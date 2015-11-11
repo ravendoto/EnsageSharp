@@ -1,2 +1,4 @@
 # EnsageSharp
-a noob who tries to learn
+Just another noob that trying to learn coding. :)
+I don't suppose you should find anything at this repo lol.
+
