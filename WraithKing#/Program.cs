@@ -78,6 +78,8 @@ namespace WraithKingCombo
                     //spell
                     if (Q == null)
                         Q = me.Spellbook.SpellQ;
+                    if (R == null)
+                        R = me.Spellbook.SpellR;
 
                   
 
@@ -138,8 +140,10 @@ namespace WraithKingCombo
                             Utils.Sleep(250, "blink");
                         }
                         if (Q.CanBeCasted() &&
+                            !target.Modifiers.ToList().Exists(x => x.Name == "modifier_item_spheretarget") &&
                             me.Position.Distance2D(target) <= 525 &&
                             Utils.SleepCheck("Q"))
+                        if (me.Mana <= 300 && CanCast(me, R)) return;
                         {
                             Q.UseAbility(target);
                             Utils.Sleep(100, "Q");
@@ -378,6 +382,11 @@ namespace WraithKingCombo
         {
             txt.OnLostDevice();
             not.OnLostDevice();
+        }
+        
+        static bool CanCast(Unit unit, Ability ability)
+        {
+            return ability != null && ability.Cooldown.Equals(0);
         }
     }
 }
