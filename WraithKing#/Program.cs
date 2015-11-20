@@ -16,7 +16,7 @@ namespace WraithKingCombo
     {
         private static bool activated;
         private static Item soulring, arcane, blink, shiva, dagon, mjollnir, mom, halberd, abyssal, ethereal, cheese, satanic, medall;
-        private static Ability Q;
+        private static Ability Q, R;
         private static Font txt;
         private static Font not;
         private static Key KeyCombo = Key.D;
