@@ -139,11 +139,16 @@ namespace WraithKingCombo
                             blink.UseAbility(target.Position);
                             Utils.Sleep(250, "blink");
                         }
-                        if (Q.CanBeCasted() &&
-                            !target.Modifiers.ToList().Exists(x => x.Name == "modifier_item_spheretarget") &&
-                            me.Position.Distance2D(target) <= 525 &&
-                            Utils.SleepCheck("Q"))
-                        if (me.Mana <= 300 && CanCast(me, R)) return;
+                        if (me.Mana <= 300 && CanCast(me, R))
+                        {
+                            me.Attack(target);
+                            Utils.Sleep(150 + Game.Ping, "attack");
+
+                        }
+                       else if (Q.CanBeCasted() &&
+                             !target.Modifiers.ToList().Exists(x => x.Name == "modifier_item_spheretarget") &&
+                             me.Position.Distance2D(target) <= 525 &&
+                             Utils.SleepCheck("Q"))
                         {
                             Q.UseAbility(target);
                             Utils.Sleep(100, "Q");
@@ -321,7 +326,7 @@ namespace WraithKingCombo
                 }
             }
         }
-      
+
 
 
 
@@ -338,8 +343,8 @@ namespace WraithKingCombo
                     activated = false;
                 }
 
-               
-                
+
+
             }
         }
 
@@ -359,7 +364,7 @@ namespace WraithKingCombo
             if (player == null || player.Team == Team.Observer || me.ClassID != ClassID.CDOTA_Unit_Hero_SkeletonKing)
                 return;
 
-            if (activated )
+            if (activated)
             {
                 txt.DrawText(null, "Wraith King#: Comboing!", 4, 150, Color.Green);
             }
@@ -368,8 +373,8 @@ namespace WraithKingCombo
             {
                 txt.DrawText(null, "Wraith King#: go combo  [" + KeyCombo + "] for toggle combo", 4, 150, Color.Aqua);
             }
-            
-            
+
+
         }
 
         static void Drawing_OnPostReset(EventArgs args)
@@ -383,13 +388,13 @@ namespace WraithKingCombo
             txt.OnLostDevice();
             not.OnLostDevice();
         }
-        
+
         static bool CanCast(Unit unit, Ability ability)
         {
             return ability != null && ability.Cooldown.Equals(0);
         }
     }
 }
- 
- 
- 
+
+
+
